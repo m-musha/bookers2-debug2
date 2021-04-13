@@ -27,30 +27,7 @@
             <% end %>
           </tr>
         </table>
-        
-        <table class="comment">
-        <% if @comment.user.id == current_user.id %>
-          <tbody>
-            <tr>
-              <td><%= @book.book_comments.each do |book_comment| %></td>
-              <td><%= attachment_image_tag(comment.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %><br>
-                  <%= book_comment.user.name %>
-              </td>
-              <td><%= book_comment.comment %></td>
-              <% if @comment.user_id == current_user.id %>
-              <td><%= link_to "Destroy", book_book_comment(book), method: :delete %></td>
-              <% end %>
-              <% end %> 
-            </tr>
-          </tbody>
-        <% end %>
-        </table>
-        
-        <div class="new-comment">
-          <%= form_with model:@book,@comment,local:true do |f| %>
-          <%= f.text_area :comment %>
-          <%= f.submit "送信" %>
-        </div>
+      <%= render 'books/comment', book: @book,book_comment: @book_comment %>
       </div>
     </div>
   </div>
