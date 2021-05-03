@@ -9,6 +9,10 @@ belongs_to :user
     favorites.where(user_id: user.id).exists?
   end
   
+  def self.create_all_ranks #Noteクラスからデータを取ってくる処理なのでクラスメソッド！
+    Book.find(Favorite.group(:book_id).order('count(book_id) desc').limit(3).pluck(:book_id))
+  end
+  
 	validates :title, presence: true
 	validates :body, presence: true, length: {maximum: 200}
 end

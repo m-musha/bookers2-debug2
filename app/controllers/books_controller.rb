@@ -13,6 +13,7 @@ class BooksController < ApplicationController
     @books = Book.all
     @book = Book.new
     @user = current_user
+    @all_ranks = Book.create_all_ranks
   end
 
   def create
