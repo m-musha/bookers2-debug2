@@ -30,6 +30,14 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
+  
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+    flash[:notice] = "The tournament is complete."
+    redirect_to "/"
+    end
+  end
 
   private
   def user_params
